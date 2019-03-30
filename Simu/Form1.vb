@@ -4,6 +4,7 @@ Option Strict On
 Public Class principale
     Private opcs As OPC
     Private adresseOPC As String = "127.0.0.1"
+    Private _gestionDB As GestionDB = New GestionDB
 
     Private Sub principale_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         remplirTableau()
@@ -11,6 +12,13 @@ Public Class principale
         AddHandler opcs.GroupeAJour, AddressOf SurGroupeAJour
         AddHandler opcs.GroupeChange, AddressOf SurGroupeAJour
         AddHandler opcs.OPCComm, AddressOf SurConnexion
+
+        _gestionDB.OpenDataBase()
+    End Sub
+
+
+    Private Sub principale_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
+        _gestionDB.CloseDatabase()
     End Sub
 
     Private Sub majBarreEtat(message As String)
@@ -21,6 +29,9 @@ Public Class principale
         Dim monOPC As OPC
         Dim boucle As Integer
 
+        PictureBox1.Visible = True
+        Timer1.Enabled = True
+
         monOPC = CType(sender, OPC)
 
         If monOPC.DonneesOPC.Count = listeDesLabels.Count Then
@@ -29,7 +40,12 @@ Public Class principale
                     listeDesLabels(boucle).Text = monOPC.DonneesOPC(boucle)(0)
                 End If
             Next
+
+            If CheckBox_capture.Checked Then
+                _gestionDB.ajouterEvenementDB(listeDesCles, listeDesLabels)
+            End If
         End If
+
     End Sub
 
     Private Sub SurConnexion(sender As Object, e As EventArgs)
@@ -45,20 +61,14 @@ Public Class principale
             majBarreEtat($"Supervision de la clé {listeDesCles(boucle)} ajoutée")
         Next
 
-        'opcs.Souscrire("Jol.A1.Blancs", 0)
-        'opcs.Souscrire("Jol.A2.Blancs", 0)
-        'opcs.Souscrire("Jol.A3.Blancs", 0)
-        'opcs.Souscrire("Jol.A4.Blancs", 0)
-        'opcs.Souscrire("Jol.A5.Blancs", 0)
-        'opcs.Souscrire("Jol.A1.Noirs", 0)
-        'opcs.Souscrire("Jol.A2.Noirs", 0)
-        'opcs.Souscrire("Jol.A3.Noirs", 0)
-        'opcs.Souscrire("Jol.A4.Noirs", 0)
-        'opcs.Souscrire("Jol.A5.Noirs", 0)
-
     End Sub
 
     Private Sub Button_connect_Click(sender As Object, e As EventArgs) Handles Button_connect.Click
+        If opcs.Serveurs.Count = 0 Then
+            MsgBox("Aucun serveur N'est disponible.")
+            Exit Sub
+        End If
+
         Try
             majBarreEtat($"Connexion en cours à kepServer@{opcs.Adresse}")
             If opcs.Connect(0) Then
@@ -73,11 +83,10 @@ Public Class principale
         AjouterLesClesDeSupervision()
     End Sub
 
-    Private Sub TableLayoutPanel1_Paint(sender As Object, e As PaintEventArgs) Handles TableLayoutPanel1.Paint
-
+    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+        PictureBox1.Visible = False
+        Timer1.Enabled = False
     End Sub
 
-    Private Sub Label5_Click(sender As Object, e As EventArgs) Handles Label5.Click
 
-    End Sub
 End Class

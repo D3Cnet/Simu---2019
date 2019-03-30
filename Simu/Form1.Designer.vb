@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class principale
     Inherits System.Windows.Forms.Form
 
     'Form remplace la méthode Dispose pour nettoyer la liste des composants.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,10 +20,13 @@ Partial Class principale
     'REMARQUE : la procédure suivante est requise par le Concepteur Windows Form
     'Elle peut être modifiée à l'aide du Concepteur Windows Form.  
     'Ne la modifiez pas à l'aide de l'éditeur de code.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(principale))
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
+        Me.A6Blanc = New System.Windows.Forms.Label()
+        Me.A6Noir = New System.Windows.Forms.Label()
         Me.A5Noir = New System.Windows.Forms.Label()
         Me.A4Noir = New System.Windows.Forms.Label()
         Me.A3Noir = New System.Windows.Forms.Label()
@@ -39,6 +42,7 @@ Partial Class principale
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.Label6 = New System.Windows.Forms.Label()
         Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
@@ -47,12 +51,13 @@ Partial Class principale
         Me.ToolStripStatusLabel_info = New System.Windows.Forms.ToolStripStatusLabel()
         Me.Button_connect = New System.Windows.Forms.Button()
         Me.Button_surveiller = New System.Windows.Forms.Button()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.A6Noir = New System.Windows.Forms.Label()
-        Me.A6Blanc = New System.Windows.Forms.Label()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.CheckBox_capture = New System.Windows.Forms.CheckBox()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.TableLayoutPanel2.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TableLayoutPanel1
@@ -92,6 +97,30 @@ Partial Class principale
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 34.0!))
         Me.TableLayoutPanel1.Size = New System.Drawing.Size(239, 115)
         Me.TableLayoutPanel1.TabIndex = 0
+        '
+        'A6Blanc
+        '
+        Me.A6Blanc.AutoSize = True
+        Me.A6Blanc.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.A6Blanc.Location = New System.Drawing.Point(197, 74)
+        Me.A6Blanc.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.A6Blanc.Name = "A6Blanc"
+        Me.A6Blanc.Size = New System.Drawing.Size(40, 41)
+        Me.A6Blanc.TabIndex = 19
+        Me.A6Blanc.Text = "-3"
+        Me.A6Blanc.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'A6Noir
+        '
+        Me.A6Noir.AutoSize = True
+        Me.A6Noir.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.A6Noir.Location = New System.Drawing.Point(197, 37)
+        Me.A6Noir.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.A6Noir.Name = "A6Noir"
+        Me.A6Noir.Size = New System.Drawing.Size(40, 37)
+        Me.A6Noir.TabIndex = 18
+        Me.A6Noir.Text = "10"
+        Me.A6Noir.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'A5Noir
         '
@@ -280,6 +309,18 @@ Partial Class principale
         Me.Label1.Text = "A1"
         Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Label6.Location = New System.Drawing.Point(197, 0)
+        Me.Label6.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(40, 37)
+        Me.Label6.TabIndex = 17
+        Me.Label6.Text = "A6"
+        Me.Label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
         'TableLayoutPanel2
         '
         Me.TableLayoutPanel2.ColumnCount = 1
@@ -367,47 +408,37 @@ Partial Class principale
         Me.Button_surveiller.Text = "Surveiller"
         Me.Button_surveiller.UseVisualStyleBackColor = True
         '
-        'Label6
+        'PictureBox1
         '
-        Me.Label6.AutoSize = True
-        Me.Label6.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label6.Location = New System.Drawing.Point(197, 0)
-        Me.Label6.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(40, 37)
-        Me.Label6.TabIndex = 17
-        Me.Label6.Text = "A6"
-        Me.Label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.PictureBox1.Image = Global.Simu.My.Resources.Resources.coeur_1
+        Me.PictureBox1.Location = New System.Drawing.Point(36, 55)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(22, 22)
+        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
+        Me.PictureBox1.TabIndex = 6
+        Me.PictureBox1.TabStop = False
+        Me.PictureBox1.Visible = False
         '
-        'A6Noir
+        'Timer1
         '
-        Me.A6Noir.AutoSize = True
-        Me.A6Noir.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.A6Noir.Location = New System.Drawing.Point(197, 37)
-        Me.A6Noir.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.A6Noir.Name = "A6Noir"
-        Me.A6Noir.Size = New System.Drawing.Size(40, 37)
-        Me.A6Noir.TabIndex = 18
-        Me.A6Noir.Text = "10"
-        Me.A6Noir.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'A6Blanc
+        'CheckBox_capture
         '
-        Me.A6Blanc.AutoSize = True
-        Me.A6Blanc.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.A6Blanc.Location = New System.Drawing.Point(197, 74)
-        Me.A6Blanc.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.A6Blanc.Name = "A6Blanc"
-        Me.A6Blanc.Size = New System.Drawing.Size(40, 41)
-        Me.A6Blanc.TabIndex = 19
-        Me.A6Blanc.Text = "-3"
-        Me.A6Blanc.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.CheckBox_capture.AutoSize = True
+        Me.CheckBox_capture.Location = New System.Drawing.Point(22, 174)
+        Me.CheckBox_capture.Name = "CheckBox_capture"
+        Me.CheckBox_capture.Size = New System.Drawing.Size(166, 17)
+        Me.CheckBox_capture.TabIndex = 7
+        Me.CheckBox_capture.Text = "Capturer en base de données"
+        Me.CheckBox_capture.UseVisualStyleBackColor = True
         '
         'principale
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(327, 213)
+        Me.Controls.Add(Me.CheckBox_capture)
+        Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.Button_surveiller)
         Me.Controls.Add(Me.Button_connect)
         Me.Controls.Add(Me.StatusStrip1)
@@ -425,6 +456,7 @@ Partial Class principale
         Me.TableLayoutPanel2.PerformLayout()
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -456,4 +488,7 @@ Partial Class principale
     Friend WithEvents A6Noir As Label
     Friend WithEvents Label6 As Label
     Friend WithEvents A6Blanc As Label
+    Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents Timer1 As Timer
+    Friend WithEvents CheckBox_capture As CheckBox
 End Class
