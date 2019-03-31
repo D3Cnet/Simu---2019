@@ -119,7 +119,7 @@ INSERT INTO cle (idCle, nomCle) VALUES (13, 'Jol.A6.Noirs');
     End Sub
 
 
-    Public Sub listeEventDB(ByRef maCollection As ListBox.ObjectCollection)
+    Public Sub listeEventDB(ByRef maCollection As ComboBox.ObjectCollection)
         Dim cmd = New SQLiteCommand("SELECT dateHeure FROM evenement", CON)
         Dim DR As SQLiteDataReader = cmd.ExecuteReader
         maCollection.Clear()

@@ -51,13 +51,18 @@ Partial Class principale
         Me.ToolStripStatusLabel_info = New System.Windows.Forms.ToolStripStatusLabel()
         Me.Button_connect = New System.Windows.Forms.Button()
         Me.Button_surveiller = New System.Windows.Forms.Button()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.Timer_DB = New System.Windows.Forms.Timer(Me.components)
         Me.CheckBox_capture = New System.Windows.Forms.CheckBox()
+        Me.Button_afficherBD = New System.Windows.Forms.Button()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.NumericUpDown_capture = New System.Windows.Forms.NumericUpDown()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.Timer_icon = New System.Windows.Forms.Timer(Me.components)
         Me.TableLayoutPanel1.SuspendLayout()
         Me.TableLayoutPanel2.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.NumericUpDown_capture, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TableLayoutPanel1
@@ -368,7 +373,7 @@ Partial Class principale
         'dateHeure
         '
         Me.dateHeure.AutoSize = True
-        Me.dateHeure.Location = New System.Drawing.Point(196, 23)
+        Me.dateHeure.Location = New System.Drawing.Point(73, 42)
         Me.dateHeure.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.dateHeure.Name = "dateHeure"
         Me.dateHeure.Size = New System.Drawing.Size(95, 13)
@@ -378,7 +383,7 @@ Partial Class principale
         'StatusStrip1
         '
         Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel_info})
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 191)
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 203)
         Me.StatusStrip1.Name = "StatusStrip1"
         Me.StatusStrip1.Size = New System.Drawing.Size(327, 22)
         Me.StatusStrip1.TabIndex = 3
@@ -395,7 +400,7 @@ Partial Class principale
         Me.Button_connect.Location = New System.Drawing.Point(12, 12)
         Me.Button_connect.Name = "Button_connect"
         Me.Button_connect.Size = New System.Drawing.Size(75, 23)
-        Me.Button_connect.TabIndex = 4
+        Me.Button_connect.TabIndex = 1
         Me.Button_connect.Text = "Connect"
         Me.Button_connect.UseVisualStyleBackColor = True
         '
@@ -404,39 +409,77 @@ Partial Class principale
         Me.Button_surveiller.Location = New System.Drawing.Point(93, 12)
         Me.Button_surveiller.Name = "Button_surveiller"
         Me.Button_surveiller.Size = New System.Drawing.Size(75, 23)
-        Me.Button_surveiller.TabIndex = 5
+        Me.Button_surveiller.TabIndex = 2
         Me.Button_surveiller.Text = "Surveiller"
         Me.Button_surveiller.UseVisualStyleBackColor = True
         '
+        'Timer_DB
+        '
+        Me.Timer_DB.Interval = 10000
+        '
+        'CheckBox_capture
+        '
+        Me.CheckBox_capture.AutoSize = True
+        Me.CheckBox_capture.Enabled = False
+        Me.CheckBox_capture.Location = New System.Drawing.Point(22, 174)
+        Me.CheckBox_capture.Name = "CheckBox_capture"
+        Me.CheckBox_capture.Size = New System.Drawing.Size(214, 17)
+        Me.CheckBox_capture.TabIndex = 4
+        Me.CheckBox_capture.Text = "Capturer en base de données toutes les"
+        Me.CheckBox_capture.UseVisualStyleBackColor = True
+        '
+        'Button_afficherBD
+        '
+        Me.Button_afficherBD.Location = New System.Drawing.Point(240, 12)
+        Me.Button_afficherBD.Name = "Button_afficherBD"
+        Me.Button_afficherBD.Size = New System.Drawing.Size(75, 23)
+        Me.Button_afficherBD.TabIndex = 3
+        Me.Button_afficherBD.Text = "Contenu"
+        Me.Button_afficherBD.UseVisualStyleBackColor = True
+        '
         'PictureBox1
         '
-        Me.PictureBox1.Image = Global.Simu.My.Resources.Resources.coeur_1
-        Me.PictureBox1.Location = New System.Drawing.Point(36, 55)
+        Me.PictureBox1.Image = Global.Simu.My.Resources.Resources.floppy
+        Me.PictureBox1.Location = New System.Drawing.Point(39, 64)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(22, 22)
+        Me.PictureBox1.Size = New System.Drawing.Size(16, 16)
         Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
         Me.PictureBox1.TabIndex = 6
         Me.PictureBox1.TabStop = False
         Me.PictureBox1.Visible = False
         '
-        'Timer1
+        'NumericUpDown_capture
         '
+        Me.NumericUpDown_capture.Enabled = False
+        Me.NumericUpDown_capture.Location = New System.Drawing.Point(235, 174)
+        Me.NumericUpDown_capture.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
+        Me.NumericUpDown_capture.Name = "NumericUpDown_capture"
+        Me.NumericUpDown_capture.Size = New System.Drawing.Size(39, 20)
+        Me.NumericUpDown_capture.TabIndex = 5
+        Me.NumericUpDown_capture.Value = New Decimal(New Integer() {10, 0, 0, 0})
         '
-        'CheckBox_capture
+        'Label9
         '
-        Me.CheckBox_capture.AutoSize = True
-        Me.CheckBox_capture.Location = New System.Drawing.Point(22, 174)
-        Me.CheckBox_capture.Name = "CheckBox_capture"
-        Me.CheckBox_capture.Size = New System.Drawing.Size(166, 17)
-        Me.CheckBox_capture.TabIndex = 7
-        Me.CheckBox_capture.Text = "Capturer en base de données"
-        Me.CheckBox_capture.UseVisualStyleBackColor = True
+        Me.Label9.AutoSize = True
+        Me.Label9.Enabled = False
+        Me.Label9.Location = New System.Drawing.Point(274, 175)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(53, 13)
+        Me.Label9.TabIndex = 10
+        Me.Label9.Text = "secondes"
+        '
+        'Timer_icon
+        '
+        Me.Timer_icon.Interval = 1000
         '
         'principale
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(327, 213)
+        Me.ClientSize = New System.Drawing.Size(327, 225)
+        Me.Controls.Add(Me.Label9)
+        Me.Controls.Add(Me.NumericUpDown_capture)
+        Me.Controls.Add(Me.Button_afficherBD)
         Me.Controls.Add(Me.CheckBox_capture)
         Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.Button_surveiller)
@@ -457,6 +500,7 @@ Partial Class principale
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.NumericUpDown_capture, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -489,6 +533,10 @@ Partial Class principale
     Friend WithEvents Label6 As Label
     Friend WithEvents A6Blanc As Label
     Friend WithEvents PictureBox1 As PictureBox
-    Friend WithEvents Timer1 As Timer
+    Friend WithEvents Timer_DB As Timer
     Friend WithEvents CheckBox_capture As CheckBox
+    Friend WithEvents Button_afficherBD As Button
+    Friend WithEvents NumericUpDown_capture As NumericUpDown
+    Friend WithEvents Label9 As Label
+    Friend WithEvents Timer_icon As Timer
 End Class

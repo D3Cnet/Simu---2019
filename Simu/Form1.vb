@@ -4,7 +4,7 @@ Option Strict On
 Public Class principale
     Private opcs As OPC
     Private adresseOPC As String = "127.0.0.1"
-    Private _gestionDB As GestionDB = New GestionDB
+    Public gestionDB As GestionDB = New GestionDB
 
     Private Sub principale_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         remplirTableau()
@@ -13,12 +13,12 @@ Public Class principale
         AddHandler opcs.GroupeChange, AddressOf SurGroupeAJour
         AddHandler opcs.OPCComm, AddressOf SurConnexion
 
-        _gestionDB.OpenDataBase()
+        gestionDB.OpenDataBase()
     End Sub
 
 
     Private Sub principale_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
-        _gestionDB.CloseDatabase()
+        gestionDB.CloseDatabase()
     End Sub
 
     Private Sub majBarreEtat(message As String)
@@ -29,9 +29,6 @@ Public Class principale
         Dim monOPC As OPC
         Dim boucle As Integer
 
-        PictureBox1.Visible = True
-        Timer1.Enabled = True
-
         monOPC = CType(sender, OPC)
 
         If monOPC.DonneesOPC.Count = listeDesLabels.Count Then
@@ -40,10 +37,6 @@ Public Class principale
                     listeDesLabels(boucle).Text = monOPC.DonneesOPC(boucle)(0)
                 End If
             Next
-
-            If CheckBox_capture.Checked Then
-                _gestionDB.ajouterEvenementDB(listeDesCles, listeDesLabels)
-            End If
         End If
 
     End Sub
@@ -58,8 +51,8 @@ Public Class principale
 
         For boucle = 0 To listeDesCles.Count - 1
             opcs.Souscrire(listeDesCles(boucle), boucle)
-            majBarreEtat($"Supervision de la clé {listeDesCles(boucle)} ajoutée")
         Next
+        majBarreEtat("Ajout des clés à superviser terminé.")
 
     End Sub
 
@@ -81,12 +74,41 @@ Public Class principale
 
     Private Sub Button_surveiller_Click(sender As Object, e As EventArgs) Handles Button_surveiller.Click
         AjouterLesClesDeSupervision()
+        CheckBox_capture.Enabled = True
+        NumericUpDown_capture.Enabled = True
+        Label9.Enabled = True
     End Sub
 
-    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+    Private Sub TimerDB_Tick(sender As Object, e As EventArgs) Handles Timer_DB.Tick
+        If CheckBox_capture.Checked Then
+            PictureBox1.Visible = True
+            Timer_icon.Enabled = True
+
+            majBarreEtat("Enregistrement en cours.")
+            ' Permet à l'affichage de se réaliser
+            Application.DoEvents()
+
+            gestionDB.ajouterEvenementDB(listeDesCles, listeDesLabels)
+        End If
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button_afficherBD.Click
+        With New AffichageData
+            .ShowDialog()
+        End With
+    End Sub
+
+    Private Sub NumericUpDown_capture_ValueChanged(sender As Object, e As EventArgs) Handles NumericUpDown_capture.ValueChanged
+        Timer_DB.Interval = 1000 * CInt(NumericUpDown_capture.Value)
+    End Sub
+
+    Private Sub CheckBox_capture_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox_capture.CheckedChanged
+        Timer_DB.Enabled = CheckBox_capture.Checked
+    End Sub
+
+    Private Sub Timer_icon_Tick(sender As Object, e As EventArgs) Handles Timer_icon.Tick
         PictureBox1.Visible = False
-        Timer1.Enabled = False
+        Timer_icon.Enabled = False
+        majBarreEtat("Réception des données...")
     End Sub
-
-
 End Class
