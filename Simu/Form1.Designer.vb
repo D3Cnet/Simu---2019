@@ -392,8 +392,8 @@ Partial Class principale
         'ToolStripStatusLabel_info
         '
         Me.ToolStripStatusLabel_info.Name = "ToolStripStatusLabel_info"
-        Me.ToolStripStatusLabel_info.Size = New System.Drawing.Size(49, 17)
-        Me.ToolStripStatusLabel_info.Text = "Coucou"
+        Me.ToolStripStatusLabel_info.Size = New System.Drawing.Size(66, 17)
+        Me.ToolStripStatusLabel_info.Text = "Lancement"
         '
         'Button_connect
         '
